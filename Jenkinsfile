@@ -76,6 +76,7 @@ pipeline{
          when { expression {  params.action == 'create' } }
             steps{
                script{
+                    sh 'cd /home/ubuntu'
                    sh 'python3 jfrog.py'
                }
             }
