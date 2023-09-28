@@ -76,7 +76,7 @@ pipeline{
             when { expression { params.action == 'create' } }
             steps {
                 script {
-                    def artifactoryUrl = "http://34.227.98.230:8082/artifactory/example-repo-local/"  // Replace with your Artifactory URL and repository name
+                    def artifactoryUrl = "http://54.91.52.166:8082/artifactory/example-repo-local/"  // Replace with your Artifactory URL and repository name
                     def username = "admin"  // Replace with your Artifactory username
                     def password = "1234@Qwer"  // Replace with your Artifactory password or API key
                     def artifactPath = "/var/lib/jenkins/workspace/java-jfrog-assign-2/target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar"  // Replace with the path to your artifact
