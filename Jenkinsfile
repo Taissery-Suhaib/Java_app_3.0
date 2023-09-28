@@ -71,14 +71,22 @@ pipeline{
                    mvnBuild()
                }
             }
-        }
-        stage('push to jfrog'){
-         when { expression {  params.action == 'create' } }
-            steps{
-               script{
-                    sh 'cd /var/lib/jenkins/workspace/'
-                   sh 'python3 jfrog.py'
-               }
+        }     
+        stage('Push to JFrog') {
+            when { expression { params.action == 'create' } }
+            steps {
+                script {
+                    def artifactoryUrl = "http://34.227.98.230:8082/artifactory/example-repo-local/"  // Replace with your Artifactory URL and repository name
+                    def username = "admin"  // Replace with your Artifactory username
+                    def password = "1234@Qwer"  // Replace with your Artifactory password or API key
+                    def artifactPath = "/var/lib/jenkins/workspace/java-jfrog-assign-2/target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar"  // Replace with the path to your artifact
+
+                    def curlCommand = """
+                        curl -u ${username}:${password} -X PUT ${artifactoryUrl}/${artifactPath} -T ${artifactPath}
+                    """
+            
+                    sh curlCommand
+                }
             }
         }        
         stage('Docker Image Build'){
