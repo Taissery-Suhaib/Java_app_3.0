@@ -76,7 +76,7 @@ pipeline{
          when { expression {  params.action == 'create' } }
             steps{
                script{
-                   sh 'python3 jfrog.sh'
+                   sh 'python3 jfrog.py'
                }
             }
         }        
