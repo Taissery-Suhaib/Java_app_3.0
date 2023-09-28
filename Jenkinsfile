@@ -72,6 +72,15 @@ pipeline{
                }
             }
         }
+        stage('push to jfrog'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   sh 'python3 jfrog.sh'
+               }
+            }
+        }        
+
         stage('Docker Image Build'){
          when { expression {  params.action == 'create' } }
             steps{
